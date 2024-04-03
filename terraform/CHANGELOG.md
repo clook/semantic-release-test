@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/clook/semantic-release-test/compare/v1.0.0...v1.0.1) (2024-04-03)
+
+
+### Bug Fixes
+
+* retry with .git suffix to confirm it triggers an error ([ef843ac](https://github.com/clook/semantic-release-test/commit/ef843ac7e4c969c1ad71848a0f3106208229a00f))
+
 # 1.0.0 (2024-04-03)
 
 
