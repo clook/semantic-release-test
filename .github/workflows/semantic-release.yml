@@ -1,0 +1,55 @@
+name: Lint and Release Terraform scripts
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'feature/**'
+    paths:
+      - 'terraform/**'
+  pull_request:
+    branches:
+      - 'main'
+      - 'feature/**'
+    paths:
+      - 'terraform/**'
+
+jobs:
+  quality:
+    name: TF Quality
+    runs-on:
+      - self-hosted
+      - default
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Lint Terraform
+        uses: actionshub/terraform-lint@main
+  release:
+    name: Release
+    needs: quality
+    runs-on:
+      - self-hosted
+      - default
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Get SHA short tag
+        id: get-sha
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      - name: Setup Node.js for semantic-release action
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Create a Github release with Semantic release
+        uses: cycjimmy/semantic-release-action@v4
+        id: semver
+        with:
+          working_directory:  ${{ github.workspace }}/terraform
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
