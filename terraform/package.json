@@ -1,0 +1,33 @@
+{
+    "name": "@clook/test-terraform",
+    "version": "1.25.0",
+    "private": true,
+    "main": "index.js",
+    "directories": {
+        "doc": "docs",
+        "test": "tests"
+    },
+    "dependencies": {
+        "commitizen": "4.2.2",
+        "vuepress": "1.7.1"
+    },
+    "devDependencies": {
+        "cz-conventional-changelog": "3.3.0"
+    },
+    "scripts": {
+        "docs:build": "vuepress build docs",
+        "docs:dev": "vuepress dev docs"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/clook/semantic-release-test.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    }
+}
