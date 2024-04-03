@@ -18,8 +18,7 @@ jobs:
   quality:
     name: TF Quality
     runs-on:
-      - self-hosted
-      - default
+      - ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -31,8 +30,7 @@ jobs:
     name: Release
     needs: quality
     runs-on:
-      - self-hosted
-      - default
+      - ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout
